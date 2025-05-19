@@ -100,7 +100,7 @@ const route = useRoute()
 
 
 const orderId = route.params.id
-const { data, isLoading, isError, error } = useOrderDineInById(orderId)
+const { data, } = useOrderDineInById(orderId)
 const { mutate: updateStatus, } = useUpdateOrderDineInStatus()
 
 const updateOrder = (orderId, payment_type) => {

@@ -253,7 +253,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, } from 'vue'
 import axiosInstance from '@/utils/axios'
 
 const products = ref([])

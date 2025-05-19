@@ -87,9 +87,6 @@ const showError = () => {
   notifyStore.notify("error", "Gagal memproses pesanan");
 };
 
-const showWarning = () => {
-  notifyStore.notify("warn", "Nama Harus Diisi");
-};
 
 
 
