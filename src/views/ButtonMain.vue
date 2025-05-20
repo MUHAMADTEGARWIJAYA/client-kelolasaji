@@ -114,13 +114,13 @@ const contentMap = computed(() => {
 
 
 const activeTab = ref(1)
-
+const api = import.meta.env.VITE_API_URL;
 const products = ref([])
 const route = useRoute()
 const fetchproduct = async () => {
   try {
     const umkmId = route.params.umkm_id
-    const response = await axios.get(`http://localhost:8080/product/getby-id-umkm-param/${umkmId}`)
+    const response = await axios.get(`${api}product/getby-id-umkm-param/${umkmId}`)
     products.value = response.data.products
     console.log(products)
   } catch (error) {
