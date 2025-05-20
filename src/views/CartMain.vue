@@ -174,6 +174,8 @@ const totalPrice = computed(() => {
   return cart.value.reduce((total, item) => total + item.price * item.quantity, 0)
 })
 
+
+const api = import.meta.env.VITE_API_URL
 const placeOrder = async () => {
   if (cart.value.length === 0) {
     showWarning()  // Showing warning notification if cart is empty
@@ -205,7 +207,7 @@ const placeOrder = async () => {
   isOrdering.value = true
 
   try {
-    const response = await axios.post(`http://localhost:8080/order/order/${tableId}/${umkmId}`, orderPayload)
+    const response = await axios.post(`${api}order/order/${tableId}/${umkmId}`, orderPayload)
 
     if (response.data && response.data.message === 'Order berhasil dibuat') {
       showSuccess()  // Showing success notification if order is successfully placed
