@@ -1,8 +1,10 @@
 // src/utils/axiosInstance.js
 import axios from 'axios'
 
+
+const api = import.meta.env.VITE_API_URL;
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: `${api}`,
   withCredentials: true, // penting agar cookie (refreshToken) dikirim
 })
 
@@ -24,9 +26,12 @@ axiosInstance.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true
       try {
-        const res = await axios.get('http://localhost:8080/auth/refreshtoken', {
-          withCredentials: true,
-        })
+        const res = await axios.get(
+          `${api}/auth/refreshtoken`,
+          {
+            withCredentials: true,
+          },
+        )
         const newAccessToken = res.data.accessToken
         localStorage.setItem('accessToken', newAccessToken)
 
