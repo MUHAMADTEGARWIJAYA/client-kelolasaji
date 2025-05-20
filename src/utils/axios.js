@@ -1,6 +1,6 @@
 // src/utils/axiosInstance.js
 import axios from 'axios'
-
+import router from '@/router';
 
 const api = import.meta.env.VITE_API_URL;
 const axiosInstance = axios.create({
@@ -42,7 +42,7 @@ axiosInstance.interceptors.response.use(
         return axiosInstance(originalRequest)
       } catch (refreshError) {
         console.error('Refresh token gagal:', refreshError)
-       // window.location.href = '/login' // Redirect ke login
+        router.push('/login') // Redirect ke login
         return Promise.reject(refreshError)
       }
     }
