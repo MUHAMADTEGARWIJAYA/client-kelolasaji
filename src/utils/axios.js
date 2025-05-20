@@ -27,7 +27,7 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true
       try {
         const res = await axios.get(
-          `${api}/auth/refreshtoken`,
+          `${api}auth/refreshtoken`,
           {
             withCredentials: true,
           },
@@ -42,7 +42,7 @@ axiosInstance.interceptors.response.use(
         return axiosInstance(originalRequest)
       } catch (refreshError) {
         console.error('Refresh token gagal:', refreshError)
-        window.location.href = '/login' // Redirect ke login
+        //window.location.href = '/login' // Redirect ke login
         return Promise.reject(refreshError)
       }
     }
