@@ -250,7 +250,7 @@ import * as XLSX from 'xlsx'
 import { saveAs } from 'file-saver'
 import { useUpdateOrderDineInStatus } from '@/Vuex-store/user-orders-dine-in'
 // Ambil data dari store
-const { orders, isLoading, } = useOrdersDineIn()
+const { orders, isLoading, refetch } = useOrdersDineIn()
 
 const { mutate: updateStatus, } = useUpdateOrderDineInStatus()
 
@@ -259,7 +259,13 @@ console.log(orders)
 console.log("test", orders.payment_type)
 
 const updateOrder = (orderId, status) => {
-  updateStatus({ orderId, status })
+  updateStatus({ orderId, status },
+    {
+      onSuccess: () => {
+        refetch() // ini untuk ambil data terbaru setelah update berhasil
+      }
+    }
+  )
 }
 
 const currentPage = ref(1)

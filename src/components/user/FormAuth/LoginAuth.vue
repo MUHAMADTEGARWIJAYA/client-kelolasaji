@@ -1,7 +1,6 @@
 <template>
   <FormMain>
     <div class="bg-gradient-to-r from-rose-50 to-violet-300 flex h-screen justify-center items-center">
-
       <div class="flex flex-col justify-center p-6 sm:p-8 rounded-xl backdrop-blur-[2px] bg-white/55
     w-[90%] max-w-[500px] h-auto sm:h-[600px]
     xl:mx-auto
@@ -9,10 +8,10 @@
         <div>
         </div>
         <h2 class="text-black font-bold text-lg mt-8">Login</h2>
-        <p class="text-zinc-600 text-sm mt-0.5">Belum punya akun?
-          <router-link to="/register">
-            <span class="font-bold text-orange-400 underline">Sing up</span>
-          </router-link>
+        <p class="text-zinc-600 text-sm mt-0.5">Haloo selamat datang
+          <!-- <router-link to="/register">
+            <span class="font-bold text-violet-400 underline">Sing up</span>
+          </router-link> -->
         </p>
         <form @submit.prevent="handleLogin" class="mt-16">
           <div>
@@ -24,8 +23,8 @@
           <div>
             <div class="flex items-end  justify-between">
               <label for="password" class="block text-zinc-600 text-sm border-[#3F3F46] mt-10">Password</label>
-              <!-- <router-link to="/forgot-password" class="text-zinc-600 hover:text-primary mb-0.1  text-sm "> Lupa
-                Password?</router-link> -->
+              <router-link to="/forgot-password" class="text-zinc-600 hover:text-primary mb-0.1  text-sm "> Lupa
+                Password?</router-link>
 
             </div>
 
@@ -52,11 +51,12 @@
 </template>
 
 <script setup>
+import FormMain from "../view/FormMain.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthProvider } from "@/stores/auth-provider";
 import { useNotifyStore } from "@/stores/notifikasi-toast";
-import FormMain from "../view/FormMain.vue";
+
 const notifyStore = useNotifyStore();
 const email = ref("");
 const password = ref("");
