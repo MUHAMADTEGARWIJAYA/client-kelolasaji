@@ -91,25 +91,25 @@ const router = createRouter({
   ],
 })
 
-// ✅ Proteksi route pakai beforeEach
-// router.beforeEach((to, from, next) => {
-//   const auth = useAuthProvider()
-//   const isAuthenticated = auth.isAuthenticated || localStorage.getItem('accessToken')
+//✅ Proteksi route pakai beforeEach
+router.beforeEach((to, from, next) => {
+  const auth = useAuthProvider()
+  const isAuthenticated = auth.isAuthenticated || localStorage.getItem('accessToken')
 
-//   // Cegah user login mengakses halaman login lagi
-//   if (to.path === '/login' && isAuthenticated) {
-//     next('/admin/home')
-//   }
+  // Cegah user login mengakses halaman login lagi
+  // if (to.path === '/login' && isAuthenticated) {
+  //   next('/admin/home')
+  // }
 
-//   // Jika butuh login & belum login
-//   else if (to.matched.some((record) => record.meta.requiresAuth) && !isAuthenticated) {
-//     next('/login')
-//   }
+  // Jika butuh login & belum login
+   if (to.matched.some((record) => record.meta.requiresAuth) && !isAuthenticated) {
+    next('/login')
+  }
 
-//   // Lanjutkan ke route yang dituju
-//   else {
-//     next()
-//   }
-// })
+  // Lanjutkan ke route yang dituju
+  else {
+    next()
+  }
+})
 
 export default router
