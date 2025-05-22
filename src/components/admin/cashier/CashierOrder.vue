@@ -1,5 +1,5 @@
 <template>
-  <section class=" bg-tertiary flex items-center flex-col w-full h-fit pt-10 pb-20">
+  <section class=" bg-tertiary flex items-center flex-col w-full h-fit pt-10 pb-20 overflow-y-auto">
     <div class="flex flex-col items-center w-full min-h-screen">
 
       <!-- Tabs -->

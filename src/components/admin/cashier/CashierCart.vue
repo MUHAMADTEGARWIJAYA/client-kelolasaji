@@ -1,5 +1,5 @@
 <template>
-  <section class="w-auto min-h-screen">
+  <section class="w-auto h-full">
     <!-- Tombol toggle hanya muncul di bawah xl -->
     <button @click="toggleSidebar" :class="[
       'fixed top-4 md:top-10 right-16 z-50 p-2 bg-quinary rounded-lg xl:hidden transition-all duration-300 ease-in-out',
@@ -12,7 +12,8 @@
     <!-- Sidebar -->
     <div :class="[
       'fixed top-0 right-0 h-full md:w-[440px] w-[300px] pt-14 xl:pt-0 bg-white rounded-l-2xl shadow-xl transform transition-transform duration-300 ease-in-out z-40',
-      isSidebarOpen ? 'translate-x-0' : 'translate-x-full', 'xl:translate-x-0' // Paksa tetap tampil di xl ke atas
+      'overflow-y-auto', // <--- tambahkan ini
+      isSidebarOpen ? 'translate-x-0' : 'translate-x-full', 'xl:translate-x-0'
     ]">
       <div class="p-6 sm:p-8">
         <div class="flex items-center justify-between mb-8">
