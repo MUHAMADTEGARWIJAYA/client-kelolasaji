@@ -1,11 +1,5 @@
 <template>
   <section class=" bg-tertiary flex items-center flex-col w-full h-fit pt-10 pb-20">
-    <!-- <div class="flex flex-col items-start justify-end w-full  max-w-7xl px-4 xl:px-7 pb-12 h-52">
-      <img src="" alt="">
-      <h1 class="text-3xl font-bold w-80  text-[#222831]">Lets order some delicious <span
-          class="text-quinary">FOOD</span>
-      </h1>
-    </div> -->
     <div class="flex flex-col items-center w-full min-h-screen">
 
       <!-- Tabs -->
@@ -20,11 +14,11 @@
           </button>
         </div>
 
-        <div class="w-full flex gap-3 pb-5 md:pb-0">
+        <div class="w-full  flex gap-3 pb-5 md:pb-0">
           <div
-            class="flex items-center border w-[600px]  focus-within:border-quinary transition duration-300 pr-3 gap-2  border-gray-500/30 h-[46px] rounded-[5px] overflow-hidden">
+            class="flex items-center border w-full  focus-within:border-quinary transition duration-300 pr-3 gap-2  border-gray-500/30 h-[46px] rounded-[5px] overflow-hidden">
             <input v-model="searchQuery" type="text" placeholder="Search for products"
-              class="w-full h-full pl-4 outline-none text-black placeholder-gray-500 text-sm" />
+              class=" w-full h-full pl-4 outline-none text-black placeholder-gray-500 text-sm" />
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="22" height="22" viewBox="0 0 30 30"
               fill="#6B7280">
               <path
@@ -48,21 +42,26 @@
         class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 md:px-7 p-3 gap-4 mt-6 place-items-center w-full max-w-7xl">
         <div v-for="item in contentMap[activeTab]" :key="item.id"
           class="flex flex-col w-44 xl:w-56 h-auto  bg-white  items-start justify-center rounded-md py-1 px-1 xl:py-1 xl:px-2 transition">
-          <router-link :to="`/detail-produk/${item._id}`">
-            <img :src="item.image" alt="" class="w-56 h-56 object-cover rounded-md" />
-          </router-link>
+          <div
+            class="flex flex-col w-44 xl:w-56 h-auto bg-white items-start justify-center rounded-md py-1 px-1 xl:py-1 xl:px-2 transition"
+            :class="{ 'opacity-50 grayscale': !item.isActive }">
 
-          <div>
-            <h1 class="text-[#222831] text-sm xl:text-sm h-14 line-clamp-2  font-semibold">{{ item.name }}</h1>
+            <router-link :to="`/detail-produk/${item._id}`">
+              <img :src="item.image" alt="" class="w-56 h-56 object-cover rounded-md" />
+            </router-link>
+
+            <div>
+              <h1 class="text-[#222831] text-sm xl:text-sm h-14 line-clamp-2 font-semibold">{{ item.name }}</h1>
+            </div>
+
+            <div class="flex justify-between w-full items-center">
+              <h2 class="text-xs md:text-sm text-quinary font-semibold">{{ formatIDR(item.price) }}</h2>
+              <button @click="handleAddToCart(item)" :disabled="!item.isActive"
+                class="text-quinary hover:bg-quinary hover:text-tertiary rounded-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                <v-icon name="bi-plus-square" scale="1.5" />
+              </button>
+            </div>
           </div>
-
-          <div class="flex  justify-between w-full items-center">
-            <h2 class=" text-xs md:text-sm text-quinary font-semibold">{{ formatIDR(item.price) }}</h2>
-            <button @click="handleAddToCart(item)" class="text-quinary hover:bg-quinary hover:text-tertiary rounded-sm">
-              <v-icon name="bi-plus-square" scale="1.5" />
-            </button>
-          </div>
-
         </div>
       </div>
     </div>

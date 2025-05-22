@@ -52,7 +52,7 @@
 
       <!-- Product Grid -->
       <div v-if="products.length > 0 && !isLoading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div v-for="product in products" :key="product._id"
+        <div v-for="product in products" :key="product._id" :class="{ 'opacity-50 grayscale': !product.isActive }"
           class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
           <div class="relative">
             <img :src="product.image || 'https://via.placeholder.com/300x200?text=No+Image'" alt="Product Image"
@@ -64,6 +64,15 @@
             </div>
           </div>
           <div class="p-5">
+            <div class="flex justify-between items-center mb-3">
+              <span v-if="!product.isActive" class="text-xs bg-red-100 text-red-600 font-medium px-2 py-0.5 rounded">
+                Tidak Aktif
+              </span>
+              <button @click="toggleProductStatus(product)" class="text-xs text-blue-600 hover:underline">
+                {{ product.isActive ? 'Nonaktifkan' : 'Aktifkan' }}
+              </button>
+            </div>
+
             <div class="flex justify-between items-start mb-1">
               <h3 class="text-lg font-semibold text-gray-800 line-clamp-1">{{ product.name }}</h3>
               <span class="text-lg font-bold text-blue-600 whitespace-nowrap">Rp{{ formatPrice(product.price) }}</span>
@@ -289,6 +298,21 @@ const fetchProducts = async () => {
   }
 }
 
+
+const toggleProductStatus = async (product) => {
+  try {
+    const newStatus = !product.isActive;
+    await axiosInstance.put(`product/set-active-status/${product._id}`, {
+      isActive: newStatus,
+    });
+
+    product.isActive = newStatus; // update local state
+  } catch (error) {
+    console.error('Error updating product status:', error);
+  }
+};
+
+
 const openCreateModal = () => {
   resetForm()
   isEdit.value = false
@@ -314,6 +338,8 @@ const closeModal = () => {
   showModal.value = false
   resetForm()
 }
+
+console.log(products);
 
 const handleImage = (e) => {
   const file = e.target.files[0]

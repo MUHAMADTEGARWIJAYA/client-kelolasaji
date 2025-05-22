@@ -34,4 +34,5 @@ coverage
 .ih
 .Ih
 
-.env
+.env.local
+.env.production

@@ -6,7 +6,7 @@
     </div>
 
     <!-- Konten utama dengan margin kiri agar tidak tertutup sidebar -->
-    <div class="md:ml-20 flex-1 overflow-y-auto h-screen">
+    <div class="md:ml-20 flex-1  overflow-y-auto h-screen mt-14 md:mt-0">
       <router-view />
     </div>
   </div>

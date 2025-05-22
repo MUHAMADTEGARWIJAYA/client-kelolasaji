@@ -2,7 +2,7 @@
   <div class="">
     <button @click="toggleSidebar"
       class="fixed top-4 left-4 z-50 p-2 bg-quinary rounded-lg transition-all duration-300  ease-in-out md:hidden"
-      :class="isSidebarOpen ? 'left-72' : 'left-4'">
+      :class="isSidebarOpen ? 'left-28' : 'left-4'">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
       </svg>
@@ -20,7 +20,7 @@
       </div>
 
       <!-- Menu Items -->
-      <nav class="flex-1 px-4 py-6 space-y-7">
+      <nav class="flex-1 px-4 md:py-6 md:space-y-7">
         <router-link to="/admin/home" class="flex items-center flex-col p-3 rounded-lg transition-all cursor-pointer"
           :class="{ 'bg-[#f44c31] text-white font-bold': route.path === '/admin/home', 'text-gray-700 hover:bg-[#f44b3180] hover:text-white': route.path !== '/admin/home' }">
           <v-icon name="bi-shop" scale="1.5" class="" />

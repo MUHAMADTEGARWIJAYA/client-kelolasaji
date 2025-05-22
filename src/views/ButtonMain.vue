@@ -48,22 +48,26 @@
         class="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-5 md:px-7 p-3 gap-4 mt-6 place-items-center w-full max-w-7xl">
         <div v-for="item in contentMap[activeTab]" :key="item.id"
           class="flex flex-col w-44 xl:w-56 h-auto  bg-white  items-start justify-center rounded-md py-1 px-1 xl:py-1 xl:px-2 transition">
-          <router-link :to="`/detail-produk/${item._id}`">
-            <img :src="item.image" alt="" class="w-56 h-56 object-cover rounded-md" />
-          </router-link>
+          <div
+            class="flex flex-col w-44 xl:w-56 h-auto bg-white items-start justify-center rounded-md py-1 px-1 xl:py-1 xl:px-2 transition"
+            :class="{ 'opacity-50 grayscale': !item.isActive }">
 
-          <div>
-            <h1 class="text-[#222831] text-sm xl:text-sm h-14 line-clamp-2  font-semibold">{{ item.name }}</h1>
+            <router-link :to="`/detail-produk/${item._id}`">
+              <img :src="item.image" alt="" class="w-56 h-56 object-cover rounded-md" />
+            </router-link>
+
+            <div>
+              <h1 class="text-[#222831] text-sm xl:text-sm h-14 line-clamp-2 font-semibold">{{ item.name }}</h1>
+            </div>
+
+            <div class="flex justify-between w-full items-center">
+              <h2 class="text-xs md:text-sm text-quinary font-semibold">{{ formatIDR(item.price) }}</h2>
+              <button @click="handleAddToCart(item)" :disabled="!item.isActive"
+                class="text-quinary hover:bg-quinary hover:text-tertiary rounded-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                <v-icon name="bi-plus-square" scale="1.5" />
+              </button>
+            </div>
           </div>
-
-          <div class="flex  justify-between w-full items-center">
-            <h2 class=" text-xs md:text-sm text-primary font-semibold">{{ formatIDR(item.price) }}</h2>
-            <button @click="handleAddToCart(item)" class="text-primary hover:bg-primary hover:text-tertiary rounded-sm">
-              <v-icon name="bi-plus-square" scale="1.5" />
-            </button>
-
-          </div>
-
         </div>
       </div>
     </div>
@@ -72,7 +76,7 @@
 
 
 <script setup>
-import axios from 'axios'
+import axiosInstance from '@/utils/axios'
 import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useNotifyStore } from '@/stores/notifikasi-toast'
@@ -114,13 +118,15 @@ const contentMap = computed(() => {
 
 
 const activeTab = ref(1)
-const api = import.meta.env.VITE_API_URL;
+
 const products = ref([])
 const route = useRoute()
+
+// const api = import.meta.env.VITE_API_URL;
 const fetchproduct = async () => {
   try {
     const umkmId = route.params.umkm_id
-    const response = await axios.get(`${api}product/getby-id-umkm-param/${umkmId}`)
+    const response = await axiosInstance.get(`product/getby-id-umkm-param/${umkmId}`)
     products.value = response.data.products
     console.log(products)
   } catch (error) {

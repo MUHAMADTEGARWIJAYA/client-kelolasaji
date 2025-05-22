@@ -2,15 +2,16 @@
   <section class="w-auto min-h-screen">
     <!-- Tombol toggle hanya muncul di bawah xl -->
     <button @click="toggleSidebar" :class="[
-      'fixed top-10 right-16 z-50 p-2 bg-quinary rounded-lg xl:hidden transition-all duration-300 ease-in-out',
-      isSidebarOpen ? '-translate-x-96' : 'translate-x-0'
+      'fixed top-4 md:top-10 right-16 z-50 p-2 bg-quinary rounded-lg xl:hidden transition-all duration-300 ease-in-out',
+      isSidebarOpen ? '-translate-x-[170px] md:-translate-x-[300px]' : 'translate-x-10'
     ]">
+
       <v-icon name="la-shopping-cart-solid" scale="1.5" />
     </button>
 
     <!-- Sidebar -->
     <div :class="[
-      'fixed top-0 right-0 h-full w-[440px] bg-white rounded-l-2xl shadow-xl transform transition-transform duration-300 ease-in-out z-40',
+      'fixed top-0 right-0 h-full md:w-[440px] w-[300px] pt-14 xl:pt-0 bg-white rounded-l-2xl shadow-xl transform transition-transform duration-300 ease-in-out z-40',
       isSidebarOpen ? 'translate-x-0' : 'translate-x-full', 'xl:translate-x-0' // Paksa tetap tampil di xl ke atas
     ]">
       <div class="p-6 sm:p-8">
