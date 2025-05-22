@@ -11,6 +11,7 @@
 
       <!-- Product Section -->
       <div v-if="product" class="container mx-auto px-4 py-6 md:py-8">
+
         <div class="max-w-6xl mx-auto md:flex gap-8">
           <!-- Product Image -->
           <div class="md:w-1/2 flex items-center justify-center bg-gray-50 rounded-xl overflow-hidden">
@@ -98,7 +99,7 @@ const product = ref(null)
 
 onMounted(async () => {
   try {
-    const res = await axios.get(`server-kelolasaji-production.up.railway.app/product/getby-id/${productId}`)
+    const res = await axios.get(`https://server-kelolasaji-production.up.railway.app/product/getby-id/${productId}`)
     product.value = res.data
   } catch (error) {
     console.error('Gagal mengambil data produk:', error)
@@ -131,6 +132,7 @@ const handleAddToCart = (product) => {
 
 const productData = computed(() => product.value?.product)
 
+console.log("test", productData)
 </script>
 
 <style scoped>
