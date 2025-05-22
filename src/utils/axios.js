@@ -26,9 +26,12 @@ axiosInstance.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true
       try {
-        const res = await axios.get(`${api}auth/refreshtoken`, {
-          withCredentials: true,
-        })
+        const res = await axios.get(
+          `https://server-kelolasaji-production.up.railway.app/auth/refreshtoken`,
+          {
+            withCredentials: true,
+          },
+        )
         const newAccessToken = res.data.accessToken
         localStorage.setItem('accessToken', newAccessToken)
 
