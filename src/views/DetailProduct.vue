@@ -98,7 +98,7 @@ const product = ref(null)
 
 onMounted(async () => {
   try {
-    const res = await axios.get(`http://localhost:8080/product/getby-id/${productId}`)
+    const res = await axios.get(`server-kelolasaji-production.up.railway.app/product/getby-id/${productId}`)
     product.value = res.data
   } catch (error) {
     console.error('Gagal mengambil data produk:', error)
