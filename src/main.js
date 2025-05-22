@@ -7,8 +7,6 @@ import App from './App.vue'
 import router from './router'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 
-console.log('API URL:', import.meta.env.VITE_API_URL)
-
 // ICONS
 import {
   FaFlag,
