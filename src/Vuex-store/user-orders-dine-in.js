@@ -18,7 +18,7 @@ export function useOrdersDineIn() {
     retry: 1,
     staleTime: 1000 * 60 * 5, // 5 menit
     refetchOnWindowFocus: true,
-    refetchInterval:  2000, // ⏱️ Refetch tiap 5 detik
+    refetchInterval: 1000, //
   })
 
   return {

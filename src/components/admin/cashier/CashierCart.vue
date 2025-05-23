@@ -243,7 +243,7 @@ const placeOrder = async () => {
   }
   if (isOrdering.value) return // cegah klik ganda
   isOrdering.value = true
-  axiosInstance.post(`http://localhost:8080/cashier/create`, orderPayload)
+  axiosInstance.post(`https://server-kelolasaji-production.up.railway.app/cashier/create`, orderPayload)
     .then(response => {
       if (response.data && response.data.message === 'Order berhasil dibuat') {
         const orderId = response.data.orderId
